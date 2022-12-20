@@ -42,9 +42,14 @@ export const useAllBreweries = () => {
 };
 
 export const useFavouriteBreweries = () => {
-  const localStorageItems = JSON.parse(
-    localStorage.getItem(FAVOURITE_LIST_ID) ?? ""
-  );
+  let localStorageItems = [];
+
+  if (localStorage.getItem(FAVOURITE_LIST_ID) != null) {
+    localStorageItems = JSON.parse(
+      localStorage.getItem(FAVOURITE_LIST_ID) ?? ""
+    );
+  }
+
   const [favouriteList, setFavouriteList] =
     React.useState<ReadonlyArray<BreweryItem>>(localStorageItems);
 
