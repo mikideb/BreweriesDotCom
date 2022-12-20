@@ -1,21 +1,38 @@
 import React from "react";
 import { Props as BreweryItem } from "./BreweryItem/BreweryItem";
 
-const BREWERY_API_ADDRESS =
-  "https://api.openbrewerydb.org/breweries?per_page=50";
+const NUMBER_OF_ITEMS_TO_FETCH = "per_page=20";
+
+const BREWERY_API_ADDRESS = "https://api.openbrewerydb.org/breweries";
 
 const FAVOURITE_LIST_ID = "favouriteList";
 
 export const useAllBreweries = () => {
   const [generalList, setGeneralList] = React.useState([]);
 
+  const handleSortByDistance = () => {
+    const successCallback = (position: GeolocationPosition) => {
+      fetch(
+        `${BREWERY_API_ADDRESS}?by_dist=${position.coords.latitude},${position.coords.latitude}&${NUMBER_OF_ITEMS_TO_FETCH}`
+      )
+        .then((res) => res.json())
+        .then((data) => setGeneralList(data));
+    };
+
+    const errorCallback = (error: GeolocationPositionError) => {
+      console.log(error);
+    };
+
+    navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+  };
+
   React.useEffect(() => {
-    fetch(BREWERY_API_ADDRESS)
+    fetch(`${BREWERY_API_ADDRESS}?${NUMBER_OF_ITEMS_TO_FETCH}`)
       .then((res) => res.json())
       .then((data) => setGeneralList(data));
   }, []);
 
-  return { generalList };
+  return { generalList, handleSortByDistance };
 };
 
 export const useFavouriteBreweries = () => {

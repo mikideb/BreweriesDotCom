@@ -9,19 +9,13 @@ export interface Props {
   readonly headline: string;
   readonly list?: ReadonlyArray<BreweryItemProps>;
   readonly onClickItem?: (item: BreweryItemProps) => void;
-  readonly isVisible?: boolean;
 }
 
-export const List = ({
-  headline,
-  list,
-  onClickItem,
-  isVisible = true,
-}: Props) => {
+export const List = ({ headline, list, onClickItem }: Props) => {
   const listWithoutDuplicates = getUniqueItems(list);
 
   return (
-    <StyledList isVisible={isVisible}>
+    <StyledList>
       <h2>{headline}</h2>
       {listWithoutDuplicates.map(({ id, name, street, city }) => (
         <BreweryItem
