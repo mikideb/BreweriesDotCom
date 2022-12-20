@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { AllBreweriesList } from "./components/AllBreweriesList/AllBreweriesList";
+import { FavouriteBreweriesList } from "./components/FavouriteBreweriesList/FavouriteBreweriesList";
+import { useFavouriteBreweries, useShowListButton } from "./components/hooks";
+import { TopPanel, ListsContainer } from "./styled-components";
 
 function App() {
+  const { favouriteList, setFavouriteList } = useFavouriteBreweries();
+  const { shouldShowAllBreweriesList, handleHideButtonClick, buttonText } =
+    useShowListButton();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <TopPanel>
+        <h1>BREWERIES DOT COM</h1>
+        <button onClick={handleHideButtonClick}>{buttonText}</button>
+      </TopPanel>
+      <ListsContainer>
+        <AllBreweriesList
+          favouriteList={favouriteList}
+          setFavouriteList={setFavouriteList}
+          isVisible={shouldShowAllBreweriesList}
+        />
+        <FavouriteBreweriesList
+          favouriteList={favouriteList}
+          setFavouriteList={setFavouriteList}
+        />
+      </ListsContainer>
     </div>
   );
 }
