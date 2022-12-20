@@ -67,13 +67,8 @@ export const useShowListButton = () => {
   const handleHideButtonClick = () =>
     setShouldShowAllBreweriesList(!shouldShowAllBreweriesList);
 
-  const buttonText = shouldShowAllBreweriesList
-    ? "Hide All Breweries List"
-    : "Show All Breweries List";
-
   return {
     shouldShowAllBreweriesList,
     handleHideButtonClick,
-    buttonText,
   };
 };
