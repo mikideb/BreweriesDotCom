@@ -9,6 +9,7 @@ const FAVOURITE_LIST_ID = "favouriteList";
 
 export const useAllBreweries = () => {
   const [generalList, setGeneralList] = React.useState([]);
+  const [shouldShowAsRawJson, setShouldShowAsRawJson] = React.useState(false);
 
   const handleSortByDistance = () => {
     const successCallback = (position: GeolocationPosition) => {
@@ -32,7 +33,12 @@ export const useAllBreweries = () => {
       .then((data) => setGeneralList(data));
   }, []);
 
-  return { generalList, handleSortByDistance };
+  return {
+    generalList,
+    handleSortByDistance,
+    shouldShowAsRawJson,
+    setShouldShowAsRawJson,
+  };
 };
 
 export const useFavouriteBreweries = () => {

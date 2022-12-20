@@ -14,19 +14,32 @@ export const AllBreweriesList = ({
   setFavouriteList,
   isVisible,
 }: Props) => {
-  const { generalList, handleSortByDistance } = useAllBreweries();
+  const {
+    generalList,
+    handleSortByDistance,
+    shouldShowAsRawJson,
+    setShouldShowAsRawJson,
+  } = useAllBreweries();
 
   const handleAddItem = (item: BreweryItem) =>
     setFavouriteList([...favouriteList, item]);
 
+  const handleShowAsJsonClick = () =>
+    setShouldShowAsRawJson(!shouldShowAsRawJson);
+
   return (
     <Wrapper isVisible={isVisible}>
       <button onClick={handleSortByDistance}>Sort by distance</button>
-      <List
-        headline="All Breweries"
-        list={generalList}
-        onClickItem={handleAddItem}
-      />
+      <button onClick={handleShowAsJsonClick}>Show as raw JSON</button>
+      {shouldShowAsRawJson ? (
+        <pre>{JSON.stringify(generalList, null, 2)}</pre>
+      ) : (
+        <List
+          headline="All Breweries"
+          list={generalList}
+          onClickItem={handleAddItem}
+        />
+      )}
     </Wrapper>
   );
 };
