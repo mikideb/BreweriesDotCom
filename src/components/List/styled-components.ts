@@ -4,5 +4,9 @@ export const StyledList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 2rem;
+  padding: 0 2rem;
+
+  h2 {
+    text-align: center;
+  }
 `;

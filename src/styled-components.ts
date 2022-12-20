@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
-export const ListsContainer = styled.div`
-  display: flex;
-`;
-
-export const TopPanel = styled.div`
+export const AppContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin: 0 auto;
+  gap: 2rem;
+`;
+
+export const ListsContainer = styled.div`
+  display: flex;
+  justify-content: center;
 `;

@@ -1,7 +1,7 @@
 import React from "react";
 import { Props as BreweryItem } from "./BreweryItem/BreweryItem";
 
-const NUMBER_OF_ITEMS_TO_FETCH = "per_page=20";
+const NUMBER_OF_ITEMS_TO_FETCH = "per_page=10";
 
 const BREWERY_API_ADDRESS = "https://api.openbrewerydb.org/breweries";
 
