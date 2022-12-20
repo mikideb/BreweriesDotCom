@@ -1,5 +1,4 @@
 import { List } from "../List/List";
-// import { useAllBreweries } from "../hooks";
 import { Props as BreweryItem } from "../BreweryItem/BreweryItem";
 import { Wrapper } from "./styled-components";
 
